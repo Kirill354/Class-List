@@ -15,9 +15,10 @@ private:
 
     }; 
     Node *begin = nullptr;
-    int Size = 0;
-
+    
 public:
+
+    int Size = 0;
 
     void Print () {
 
@@ -45,6 +46,7 @@ public:
     void PushBack (const int &item) {
 
         Node *current = begin;
+        Size++;
 
         if (current == nullptr){
 
@@ -71,10 +73,7 @@ public:
             current->next = newitem;
 
         }
-        
-        Size++;
-        
-
+    
     }
 
     void DeleteFront(){
@@ -107,8 +106,8 @@ void menu(){
     cout << " 2 - to put new element front " << endl;
     cout << " 3 - to put new element back " << endl;
     cout << " 4 - to delete front element " << endl;
-    cout << " 5 - to delete back element" << endl << endl;
-   
+    cout << " 5 - to delete back element" << endl;
+    cout << " 6 - to display size of your list " << endl << endl;
 }
 
 int main()
@@ -159,6 +158,11 @@ int main()
                 cout << " element is deleted " << endl;
                 break;
             
+            case '6':
+
+                cout << " size of your list: " << Newitem->Size << endl;
+                break;
+
             default:
 
                 cout << " incorrect number " << endl;
