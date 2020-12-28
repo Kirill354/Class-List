@@ -19,7 +19,6 @@ private:
 
 public:
 
-
     void Print () {
 
         Node *temp = begin;
@@ -77,9 +76,40 @@ public:
         
 
     }
+
+    void DeleteFront(){
+
+        Node *current = begin;
+
+        if (current == nullptr){
+
+            return;
+
+        }
+
+        else {
+
+            begin = current->next;
+            delete current;
+
+        }
+
+    }
     
 };
 
+
+void menu(){
+
+    cout << "\nWhat do your prefer? " << endl << endl;
+    cout << " 0 - to left menu " << endl;
+    cout << " 1 - to display a list  " << endl;
+    cout << " 2 - to put new element front " << endl;
+    cout << " 3 - to put new element back " << endl;
+    cout << " 4 - to delete front element " << endl;
+    cout << " 5 - to delete back element" << endl << endl;
+   
+}
 
 int main()
 {
@@ -87,11 +117,61 @@ int main()
     
     List *Newitem = new List;
     
-    Newitem->PushBack(66);
-    Newitem->PushFront(14);
-    Newitem->Print();
+    char c;
+
+    do {
+
+        cout <<'\n';
+        menu();
+        cin >> c;
+
+        switch(c){
+
+            case '0':
+
+                break;
+
+            case '1':
+
+                cout << " your list: " << endl;
+                Newitem->Print();
+                break;
+
+            case '2':
+
+                cout << " input element: ";
+                int k;
+                cin >> k;
+                Newitem->PushFront(k);
+                break;
+
+            case '3':
+
+                cout << " input element: ";
+                int m;
+                cin >> m;
+                Newitem->PushBack(m);
+                break;
+
+            case '4':
+
+                Newitem->DeleteFront();
+                cout << " element is deleted " << endl;
+                break;
+            
+            default:
+
+                cout << " incorrect number " << endl;
+                break;
+
+        }
+
+    }
+
+    while (c != '0');
     
     delete Newitem;
+
     return 0;
 
 }
