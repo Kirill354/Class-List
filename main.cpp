@@ -91,7 +91,7 @@ public:
 
             begin = current->next;
             delete current;
-
+            Size --;
         }
 
     }
