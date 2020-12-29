@@ -2,23 +2,26 @@
 
 using namespace std;
 
-
-class List 
-{    
-private:
-    
-    struct Node{
+struct Node{
 
     int id; 
     Node *next;
     Node *prev;
 
-    }; 
+}; 
+
+class List 
+{    
+private:
+    
     Node *begin = nullptr;
+    int Size = 0;
     
 public:
 
-    int Size = 0;
+    int GetSize(){
+        return Size;
+    }
 
     void Print () {
 
@@ -43,6 +46,7 @@ public:
 
     }
 
+    
     void PushBack (const int &item) {
 
         Node *current = begin;
@@ -94,6 +98,35 @@ public:
         }
 
     }
+
+    void DeleteBack() {
+
+        Node *current = begin;
+        Node *current2;
+        
+        if (current == nullptr){
+            return;
+        }
+
+        if (current->next == nullptr){
+            
+            DeleteFront();
+            return;
+        }
+
+        else{
+
+            while (current->next != nullptr){
+
+                current2 = current;
+                current = current->next;
+            }
+            delete current;
+            current2->next = nullptr;
+            Size--;
+        }
+        
+    }
     
 };
 
@@ -127,17 +160,14 @@ int main()
         switch(c){
 
             case '0':
-
                 break;
 
             case '1':
-
                 cout << " your list: " << endl;
                 Newitem->Print();
                 break;
 
             case '2':
-
                 cout << " input element: ";
                 int k;
                 cin >> k;
@@ -145,7 +175,6 @@ int main()
                 break;
 
             case '3':
-
                 cout << " input element: ";
                 int m;
                 cin >> m;
@@ -153,23 +182,23 @@ int main()
                 break;
 
             case '4':
-
                 Newitem->DeleteFront();
                 cout << " element is deleted " << endl;
                 break;
-            
-            case '6':
 
-                cout << " size of your list: " << Newitem->Size << endl;
+            case '5':
+                Newitem->DeleteBack();
+                cout << " element is deleted " << endl;
                 break;
 
+            case '6':
+                cout << " size of your list: " << Newitem->GetSize() << endl;
+                break;
+                
             default:
-
                 cout << " incorrect number " << endl;
                 break;
-
         }
-
     }
 
     while (c != '0');
